@@ -1,0 +1,87 @@
+---
+import { Image } from "astro:assets";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import FAQList from "../components/FAQList.astro";
+import WhatsAppLink from "../components/WhatsAppLink.astro";
+import { site } from "../data/site";
+import { services } from "../data/services";
+import { faqs } from "../data/faqs";
+
+import stylingImage from "../assets/images/services/salon-styling-session.webp";
+import piercingImage from "../assets/images/services/ear-piercing-service.webp";
+import hairImage from "../assets/images/hair/floral-hairstyle.webp";
+import bridalImage from "../assets/images/bridal/bridal-makeup-styling.webp";
+
+const images: Record<string, { src: ImageMetadata; alt: string }> = {
+  "bridal-makeup": {
+    src: bridalImage,
+    alt: "Traditional bridal makeup and styling, with jasmine flowers in the hair",
+  },
+  "hair-styling": {
+    src: hairImage,
+    alt: "Hairstyle decorated with fresh flowers, seen from behind",
+  },
+  "ear-piercing": {
+    src: piercingImage,
+    alt: "Close-up of an ear-piercing service being performed",
+  },
+};
+---
+
+<SiteLayout
+  title={`Salon Services in Vadavalli, Coimbatore | ${site.brandName}`}
+  description="Bridal makeup, hair styling and cuts, facials and skin care, and ear piercing at Kalai's Beauty Salon & Spa, Vadavalli, Coimbatore. Prices on request."
+  canonicalPath="/services/"
+>
+  <PageHero
+    eyebrow="Services"
+    title="Salon services, done properly"
+    intro="From bridal makeup to everyday hair and skin care — tell us what you need and we will confirm the details, timing and price on WhatsApp."
+  />
+
+  <section class="container section">
+    <div class="grid grid-3">
+      {
+        services.map((service) => (
+          <ServiceCard
+            service={service}
+            image={images[service.id]?.src}
+            alt={images[service.id]?.alt}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="split">
+      <div class="media media-wide reveal">
+        <Image
+          src={stylingImage}
+          alt="A styling service being carried out on a client in the salon"
+          widths={[400, 640]}
+          sizes="(min-width: 62rem) 45vw, 90vw"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="reveal">
+        <p class="eyebrow">How it works</p>
+        <h2>Ask first, then book</h2>
+        <p class="muted">
+          Send us the service you want and a preferred date. We check the schedule and reply
+          personally to confirm. Nothing is booked until we say so.
+        </p>
+        <WhatsAppLink intent="salon" label="Ask about a service" />
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <p class="eyebrow reveal">Questions</p>
+    <h2 class="reveal">Before you visit</h2>
+    <FAQList items={faqs} />
+  </section>
+</SiteLayout>

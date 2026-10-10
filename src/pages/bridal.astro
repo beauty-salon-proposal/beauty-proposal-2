@@ -1,0 +1,78 @@
+---
+import { Image } from "astro:assets";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import WhatsAppLink from "../components/WhatsAppLink.astro";
+import EnquiryForm from "../components/EnquiryForm.astro";
+import FAQList from "../components/FAQList.astro";
+import { site } from "../data/site";
+import { faqs } from "../data/faqs";
+import bridalImage from "../assets/images/bridal/bridal-makeup-styling.webp";
+---
+
+<SiteLayout
+  title={`Bridal Makeup & Styling in Vadavalli, Coimbatore | ${site.brandName}`}
+  description="Bridal makeup and styling in Vadavalli, Coimbatore. Tell us your date and the look you want — Kalai's Beauty Salon & Spa replies on WhatsApp."
+  canonicalPath="/bridal/"
+>
+  <PageHero
+    eyebrow="Bridal"
+    title="Bridal makeup & styling"
+    intro="Your date, your outfit, your jewellery — we plan the look around all three. Send an enquiry and we will check the date for you."
+  >
+    <div class="btn-row">
+      <WhatsAppLink intent="bridal" label="Ask about your date" />
+      <a class="btn btn-ghost" href="#enquiry">Send an enquiry</a>
+    </div>
+  </PageHero>
+
+  <section class="container section">
+    <div class="split">
+      <div class="media media-portrait reveal">
+        <Image
+          src={bridalImage}
+          alt="Traditional bridal makeup and styling, with jasmine flowers in the hair"
+          widths={[400, 640]}
+          sizes="(min-width: 62rem) 45vw, 90vw"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="reveal">
+        <p class="eyebrow">What to share with us</p>
+        <h2>The more we know, the better the fit</h2>
+        <ul class="list-check">
+          <li>Your wedding or function date</li>
+          <li>The function(s) you need makeup for</li>
+          <li>Your outfit and jewellery colours</li>
+          <li>Any reference looks you like</li>
+        </ul>
+        <p class="muted" style="margin-top:1.25rem">
+          We will confirm what is possible for your date when we reply. Sending an enquiry does not
+          hold the date.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section" id="enquiry">
+    <div class="split">
+      <div class="reveal">
+        <p class="eyebrow">Enquire</p>
+        <h2>Check your date</h2>
+        <p class="muted">
+          Fill this in and we will open WhatsApp with your message ready. You review it and press
+          Send — we then reply personally to confirm or suggest alternatives.
+        </p>
+        <p class="note">This form does not store your details and does not confirm a booking.</p>
+      </div>
+      <EnquiryForm context="bridal" />
+    </div>
+  </section>
+
+  <section class="container section">
+    <p class="eyebrow reveal">Questions</p>
+    <h2 class="reveal">Bridal enquiries</h2>
+    <FAQList items={faqs.filter((faq) => ["booking", "bridal", "prices"].includes(faq.id))} />
+  </section>
+</SiteLayout>

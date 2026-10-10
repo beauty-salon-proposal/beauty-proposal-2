@@ -1,0 +1,77 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import WhatsAppLink from "../components/WhatsAppLink.astro";
+import EnquiryForm from "../components/EnquiryForm.astro";
+import { site } from "../data/site";
+import { course, courseModules } from "../data/course";
+---
+
+<SiteLayout
+  title={`10-Day Beautician Course in Coimbatore | ${site.brandName}`}
+  description="10-day beautician course in Coimbatore: skin, hair, makeup, threading, nails and bridal makeover. Ask Kalai's Beauty Salon & Spa for batches."
+  canonicalPath="/course/"
+>
+  <PageHero eyebrow="Beautician course" title={course.title} intro={course.summary}>
+    <div class="btn-row">
+      <WhatsAppLink intent="course" label="Ask about the next batch" />
+      <a class="btn btn-ghost" href="#enrol">Enquire about joining</a>
+    </div>
+  </PageHero>
+
+  <section class="container section">
+    <div class="card reveal">
+      <p class="eyebrow">What you learn</p>
+      <ul class="list-check">
+        {
+          courseModules.map((module) => (
+            <li>
+              <strong>{module.title}</strong> — {module.summary}
+            </li>
+          ))
+        }
+      </ul>
+      <p class="muted" style="font-size:.88rem;margin:1.5rem 0 0">
+        Topics are confirmed with us before each batch; the exact syllabus is shared when you ask.
+      </p>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="grid grid-3">
+      <div class="card reveal">
+        <h3 style="font-size:1.15rem">Duration</h3>
+        <p class="muted" style="margin:0">
+          {course.durationText}, full time. Confirm the current schedule with us.
+        </p>
+      </div>
+      <div class="card reveal">
+        <h3 style="font-size:1.15rem">Batch dates</h3>
+        <p class="muted" style="margin:0">Shared on WhatsApp — ask us for the next start date.</p>
+      </div>
+      <div class="card reveal">
+        <h3 style="font-size:1.15rem">Fee</h3>
+        <p class="muted" style="margin:0">Ask us for the current course fee before joining.</p>
+      </div>
+    </div>
+    <p class="note reveal" style="margin-top:1.5rem">
+      We do not publish fees or start dates on this page so you never see an out-of-date figure.
+      Message us and we will send the current details.
+    </p>
+  </section>
+
+  <section class="container section" id="enrol">
+    <div class="split">
+      <div class="reveal">
+        <p class="eyebrow">Enrol</p>
+        <h2>Ask about joining</h2>
+        <p class="muted">
+          Tell us your name and when you would like to start. We open WhatsApp with your message and
+          reply with batch dates, fee and seats.
+        </p>
+        <p class="note">Enrolling is confirmed only when we reply — not by sending this form.</p>
+      </div>
+      <EnquiryForm context="course" />
+    </div>
+  </section>
+</SiteLayout>

@@ -1,0 +1,30 @@
+---
+import { Image } from "astro:assets";
+import teaser from "../assets/images/jewellery-teaser/jewellery-product-teaser.webp";
+import WhatsAppLink from "./WhatsAppLink.astro";
+---
+
+<section
+  class="card reveal"
+  style="display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(min(14rem,100%),1fr));align-items:center"
+>
+  <div class="media media-portrait" style="box-shadow:none;margin:0">
+    <Image
+      src={teaser}
+      alt="Jewellery piece featured by the salon"
+      widths={[320, 480, 640]}
+      sizes="(min-width: 62rem) 24vw, 90vw"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div>
+    <p class="eyebrow">Jewellery</p>
+    <h3>Our jewellery collection is coming soon</h3>
+    <p class="muted">
+      We are putting together a separate jewellery website. Until it launches you can ask us about
+      pieces and availability right here on WhatsApp.
+    </p>
+    <WhatsAppLink intent="jewellery" label="Ask about jewellery" />
+  </div>
+</section>

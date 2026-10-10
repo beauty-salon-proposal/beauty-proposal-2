@@ -1,0 +1,75 @@
+---
+import { site } from "../data/site";
+
+interface Props {
+  context?: "general" | "bridal" | "course";
+}
+
+const { context = "general" } = Astro.props;
+
+const intents =
+  context === "bridal"
+    ? [
+        { value: "bridal", label: "Bridal makeup" },
+        { value: "salon", label: "Salon service" },
+        { value: "course", label: "Beautician course" },
+        { value: "jewellery", label: "Jewellery" },
+        { value: "general", label: "General enquiry" },
+      ]
+    : [
+        { value: "general", label: "General enquiry" },
+        { value: "bridal", label: "Bridal makeup" },
+        { value: "salon", label: "Salon service" },
+        { value: "course", label: "Beautician course" },
+        { value: "jewellery", label: "Jewellery" },
+      ];
+---
+
+<form class="form card reveal" data-enquiry-form novalidate>
+  <div class="field">
+    <label for="enq-name">Your name</label>
+    <input id="enq-name" name="name" type="text" autocomplete="name" maxlength="80" required />
+    <span class="error" data-error-for="name" id="enq-name-error"></span>
+  </div>
+
+  <div class="field">
+    <label for="enq-intent">What can we help with?</label>
+    <select id="enq-intent" name="intent">
+      {intents.map((option) => <option value={option.value}>{option.label}</option>)}
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="enq-date">Preferred date <span class="muted">(optional)</span></label>
+    <input id="enq-date" name="date" type="date" />
+    <span class="error" data-error-for="date" id="enq-date-error"></span>
+  </div>
+
+  <div class="field">
+    <label for="enq-note">Anything else <span class="muted">(optional)</span></label>
+    <textarea id="enq-note" name="note" rows="3" maxlength="500"></textarea>
+    <span class="error" data-error-for="note" id="enq-note-error"></span>
+  </div>
+
+  <button class="btn" type="submit">Open WhatsApp with my enquiry</button>
+
+  <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+
+  <p class="muted" style="font-size:.85rem;margin:0">
+    This opens WhatsApp with your message ready. Nothing is sent to us until you press Send there,
+    and it does not confirm a booking.
+  </p>
+
+  <noscript>
+    <p class="muted">
+      JavaScript is off, so please message us directly on
+      <a href={`https://wa.me/${site.whatsappDigits}`} target="_blank" rel="noopener noreferrer"
+        >WhatsApp</a
+      > or call <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>.
+    </p>
+  </noscript>
+</form>
+
+<script>
+  import "../scripts/enquiry-form";
+</script>

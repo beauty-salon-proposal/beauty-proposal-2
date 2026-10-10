@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import type { ServiceItem } from "../data/services";
+import WhatsAppLink from "./WhatsAppLink.astro";
+
+interface Props {
+  service: ServiceItem;
+  image?: ImageMetadata;
+  alt?: string;
+}
+
+const { service, image, alt } = Astro.props;
+---
+
+<article class="card service-card reveal">
+  {
+    image && alt && (
+      <div class="media media-wide">
+        <Image
+          src={image}
+          alt={alt}
+          widths={[320, 480, 640]}
+          sizes="(min-width: 62rem) 30vw, 90vw"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    )
+  }
+  <h3>{service.name}</h3>
+  <p>{service.summary}</p>
+  {
+    service.priceText ? (
+      <p class="pill">{service.priceText}</p>
+    ) : (
+      <p class="muted" style="font-size:.9rem">
+        Price on request — ask us on WhatsApp.
+      </p>
+    )
+  }
+  <WhatsAppLink
+    intent={service.category === "bridal" ? "bridal" : "salon"}
+    label={service.enquiryLabel}
+    variant="ghost"
+  />
+</article>

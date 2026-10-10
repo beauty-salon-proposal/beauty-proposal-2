@@ -1,0 +1,49 @@
+---
+import { navigation, site } from "../data/site";
+import { telLink } from "../lib/whatsapp";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>{site.brandName}</h3>
+        <p class="muted">{site.locationLabel}</p>
+        <p class="muted">Bridal makeup, salon services and a 10-day beautician course.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <ul>
+          {
+            navigation.map((item) => (
+              <li>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href={telLink()}>{site.phoneDisplay}</a></li>
+          <li>
+            <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer">
+              {site.instagramHandle}
+            </a>
+          </li>
+          <li><a href="/contact/">All contact options</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; {year} {site.brandName}</span>
+      <span
+        >Enquiries are answered personally on WhatsApp — the website does not confirm bookings.</span
+      >
+    </div>
+  </div>
+</footer>

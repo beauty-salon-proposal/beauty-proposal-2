@@ -1,0 +1,45 @@
+:root {
+  /* Colour — single light theme only (FR-002, FR-020). */
+  --bg: #faf8ff;
+  --surface: #ffffff;
+  --ink: #2a2438;
+  --mute: #6e6683;
+  --primary: #6b4fa8;
+  --primary-strong: #5a4091;
+  --lav-tint: #ede6fa;
+  --lav: #a995e0;
+  --sage: #3f7a5a;
+  --sage-soft: #8fc2a0;
+  --line: #e5ddf1;
+  --danger: #a3324a;
+
+  /* Typography */
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-body: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --step-1: clamp(1.25rem, 1.16rem + 0.44vw, 1.5rem);
+  --step-2: clamp(1.6rem, 1.4rem + 0.9vw, 2rem);
+  --step-3: clamp(2rem, 1.7rem + 1.6vw, 3rem);
+  --step-4: clamp(2.6rem, 2rem + 3vw, 4.4rem);
+
+  /* Spacing & shape */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --radius-sm: 10px;
+  --radius: 18px;
+  --radius-lg: 28px;
+  --shadow-sm: 0 8px 24px -18px rgb(42 36 56 / 0.5);
+  --shadow: 0 26px 60px -40px rgb(107 79 168 / 0.75);
+  --content: 70rem;
+  --gutter: clamp(1.1rem, 4vw, 3rem);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --fast: 180ms;
+  --slow: 520ms;
+
+  --focus: 3px solid var(--primary);
+}

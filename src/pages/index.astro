@@ -1,0 +1,136 @@
+---
+import { Image } from "astro:assets";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import WhatsAppLink from "../components/WhatsAppLink.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import JewelleryTeaser from "../components/JewelleryTeaser.astro";
+import { site } from "../data/site";
+import { services, type ServiceItem } from "../data/services";
+import { course } from "../data/course";
+
+const serviceById = (id: string): ServiceItem => {
+  const found = services.find((entry) => entry.id === id);
+  if (!found) throw new Error(`Unknown service: ${id}`);
+  return found;
+};
+
+import heroImage from "../assets/images/hero/hero-floral-arch.webp";
+import bridalImage from "../assets/images/bridal/bridal-makeup-styling.webp";
+import hairImage from "../assets/images/hair/floral-hairstyle.webp";
+import piercingImage from "../assets/images/services/ear-piercing-service.webp";
+---
+
+<SiteLayout
+  title={`${site.brandName} | Bridal Makeup, Salon & Beautician Course in Vadavalli, Coimbatore`}
+  description="Bridal makeup, hair, skin care and a 10-day beautician course in Vadavalli, Coimbatore. Enquire with Kalai's Beauty Salon & Spa on WhatsApp."
+  canonicalPath="/"
+>
+  <section class="container hero">
+    <div class="reveal">
+      <p class="eyebrow">{site.brandName} &middot; {site.locationLabel}</p>
+      <h1>Bridal glow, healthy skin, <em>beautiful hair.</em></h1>
+      <p class="lede">
+        A salon and makeup studio in Vadavalli, Coimbatore — bridal makeup and styling, everyday
+        salon services and a 10-day beautician course.
+      </p>
+      <div class="btn-row">
+        <WhatsAppLink label="Enquire on WhatsApp" />
+        <a class="btn btn-ghost" href="/services/">See our services</a>
+      </div>
+      <p class="muted" style="font-size:.85rem;margin-top:1rem">
+        Message us and we reply personally — the website does not confirm a booking.
+      </p>
+    </div>
+
+    <div class="media media-portrait hero-media reveal">
+      <Image
+        src={heroImage}
+        alt="Finished look photographed in front of a flower-decorated arch"
+        widths={[420, 640, 864]}
+        sizes="(min-width: 62rem) 40vw, 90vw"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <span class="pill hero-tag">Vadavalli &middot; Coimbatore</span>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="split">
+      <div class="media media-portrait reveal split-media">
+        <Image
+          src={bridalImage}
+          alt="Traditional bridal makeup and styling, with jasmine flowers in the hair"
+          widths={[400, 640]}
+          sizes="(min-width: 62rem) 45vw, 90vw"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="reveal">
+        <p class="eyebrow">Bridal</p>
+        <h2>Your wedding look, planned around your date</h2>
+        <p class="muted">
+          Bridal makeup and styling is what we are best known for. Tell us your date, your outfit
+          and the look you have in mind, and we will take it from there.
+        </p>
+        <div class="btn-row">
+          <a class="btn" href="/bridal/">Explore bridal</a>
+          <WhatsAppLink intent="bridal" label="Check a date" variant="ghost" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <p class="eyebrow reveal">Services</p>
+    <h2 class="reveal">Everything under one roof</h2>
+    <p class="lede reveal">Prices are shared on request so you always get the current rate.</p>
+    <div class="grid grid-3" style="margin-top:2rem">
+      <ServiceCard
+        service={serviceById("hair-styling")}
+        image={hairImage}
+        alt="Hairstyle decorated with fresh flowers, seen from behind"
+      />
+      <ServiceCard service={serviceById("facials-skin-care")} />
+      <ServiceCard
+        service={serviceById("ear-piercing")}
+        image={piercingImage}
+        alt="Close-up of an ear-piercing service being performed"
+      />
+    </div>
+    <p class="reveal" style="margin-top:1.5rem">
+      <a href="/services/">View all services</a>
+    </p>
+  </section>
+
+  <section class="container section">
+    <div class="card split reveal">
+      <div>
+        <p class="eyebrow">Beautician course</p>
+        <h2>{course.title}</h2>
+        <p class="muted">{course.summary}</p>
+        <div class="btn-row">
+          <a class="btn" href="/course/">Course details</a>
+          <WhatsAppLink intent="course" label="Ask about batches" variant="ghost" />
+        </div>
+      </div>
+      <div>
+        <ul class="list-check">
+          <li>Skin care and facials</li>
+          <li>Hair care and styling</li>
+          <li>Makeup, basics through bridal</li>
+          <li>Threading, waxing, manicure &amp; pedicure</li>
+        </ul>
+        <p class="muted" style="font-size:.88rem;margin-top:1rem">
+          Batch dates and fees are shared on WhatsApp.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <JewelleryTeaser />
+  </section>
+</SiteLayout>

@@ -1,0 +1,83 @@
+---
+import { navigation, site } from "../data/site";
+import { waLink, intentMessage } from "../lib/whatsapp";
+
+const currentPath = Astro.url.pathname;
+
+function isCurrent(href: string): boolean {
+  if (href === "/") return currentPath === "/";
+  return currentPath.startsWith(href);
+}
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/">
+      Kalai's <span>Beauty Salon &amp; Spa</span>
+      <small>{site.locationLabel}</small>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Main">
+      <ul class="nav-list">
+        {
+          navigation.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a
+        class="btn"
+        href={waLink(intentMessage("general"))}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        WhatsApp us
+      </a>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-navigation"
+        aria-label="Open menu"
+        data-nav-toggle
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobile-navigation" data-mobile-nav data-open="false">
+    <nav aria-label="Mobile">
+      <ul>
+        {
+          navigation.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <a
+      class="btn"
+      href={waLink(intentMessage("general"))}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Chat on WhatsApp
+    </a>
+  </div>
+</header>
+
+<script>
+  import "../scripts/navigation";
+</script>

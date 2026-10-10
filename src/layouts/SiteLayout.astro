@@ -1,0 +1,102 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { site } from "../data/site";
+import { isProduction } from "../lib/approval";
+import heroImage from "../assets/images/hero/hero-floral-arch.webp";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Route path used for canonical/OG when SITE_URL is configured. */
+  canonicalPath?: string;
+}
+
+const { title, description, canonicalPath = "/" } = Astro.props;
+
+const baseUrl = site.publicBaseUrl?.replace(/\/$/, "");
+const canonical = baseUrl ? new URL(canonicalPath, baseUrl).href : undefined;
+/** Open Graph needs an absolute URL, so it is only emitted with SITE_URL set. */
+const shareImage = baseUrl ? new URL(heroImage.src, baseUrl).href : undefined;
+
+/**
+ * Structured data uses only owner-supplied facts (FR-017, BR-008): no ratings,
+ * hours, street address or coordinates — none of those are verified. Anything
+ * still unconfirmed is omitted rather than guessed.
+ */
+const businessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BeautySalon",
+  name: site.brandName,
+  telephone: site.phoneE164,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Vadavalli, Coimbatore",
+    addressRegion: "Tamil Nadu",
+    addressCountry: "IN",
+  },
+  sameAs: [site.instagramUrl],
+  ...(canonical ? { url: canonical } : {}),
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {!isProduction && <meta name="robots" content="noindex, nofollow" />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {shareImage && <meta property="og:image" content={shareImage} />}
+    <meta property="og:locale" content="en_IN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <script type="application/ld+json" set:html={JSON.stringify(businessJsonLd)} />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#faf8ff" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <ClientRouter />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Outfit:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      // Marks JS as available so reveal styles can hide content. If the motion
+      // module never reports ready, the class is removed below and everything
+      // stays visible (FR-027, AC-US010-3).
+      document.documentElement.classList.add("js");
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("reduced-motion");
+      }
+      window.setTimeout(function () {
+        if (document.documentElement.dataset.motionReady !== "true") {
+          document.documentElement.classList.remove("js");
+        }
+      }, 2500);
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <SiteHeader />
+    <main id="main">
+      <slot />
+    </main>
+    <SiteFooter />
+    <script>
+      import "../scripts/motion";
+    </script>
+  </body>
+</html>

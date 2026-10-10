@@ -1,0 +1,103 @@
+---
+import { Image } from "astro:assets";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import EnquiryForm from "../components/EnquiryForm.astro";
+import FAQList from "../components/FAQList.astro";
+import WhatsAppLink from "../components/WhatsAppLink.astro";
+import { site } from "../data/site";
+import { faqs } from "../data/faqs";
+import { telLink, waLink, intentMessage } from "../lib/whatsapp";
+import frontageImage from "../assets/images/salon/salon-frontage.webp";
+---
+
+<SiteLayout
+  title={`Contact | ${site.brandName}, Vadavalli, Coimbatore`}
+  description="Call, WhatsApp or message Kalai's Beauty Salon & Spa in Vadavalli, Coimbatore, and ask for directions."
+  canonicalPath="/contact/"
+>
+  <PageHero
+    eyebrow="Contact"
+    title="Get in touch"
+    intro="WhatsApp is the quickest way to reach us. Call, message or find us on Instagram — whichever suits you."
+  />
+
+  <section class="container section">
+    <div class="grid grid-3">
+      <div class="card reveal">
+        <p class="eyebrow">Phone</p>
+        <h3 style="font-size:1.15rem">Call us</h3>
+        <p style="margin-bottom:.75rem"><a href={telLink()}>{site.phoneDisplay}</a></p>
+        <p class="muted" style="font-size:.88rem;margin:0">Tap to open your dialler.</p>
+      </div>
+
+      <div class="card reveal">
+        <p class="eyebrow">WhatsApp</p>
+        <h3 style="font-size:1.15rem">Message us</h3>
+        <p style="margin-bottom:.75rem">
+          <a href={waLink(intentMessage("general"))} target="_blank" rel="noopener noreferrer"
+            >Start a chat</a
+          >
+        </p>
+        <p class="muted" style="font-size:.88rem;margin:0">
+          We reply personally during salon hours.
+        </p>
+      </div>
+
+      <div class="card reveal">
+        <p class="eyebrow">Instagram</p>
+        <h3 style="font-size:1.15rem">Follow our work</h3>
+        <p style="margin-bottom:.75rem">
+          <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer">
+            {site.instagramHandle}
+          </a>
+        </p>
+        <p class="muted" style="font-size:.88rem;margin:0">Latest work and updates.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="split">
+      <div class="media media-wide reveal">
+        <Image
+          src={frontageImage}
+          alt="Salon frontage with the signboard visible"
+          widths={[400, 640]}
+          sizes="(min-width: 62rem) 45vw, 90vw"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="reveal">
+        <p class="eyebrow">Find us</p>
+        <h2>{site.locationLabel}</h2>
+        <p class="muted">
+          We have not published a street address or map pin yet. Message us on WhatsApp and we will
+          send you the exact location and directions.
+        </p>
+        <WhatsAppLink label="Ask for directions" />
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="split">
+      <div class="reveal">
+        <p class="eyebrow">Enquiry form</p>
+        <h2>Send us the details</h2>
+        <p class="muted">
+          Fill this in and we will open WhatsApp with your message ready for you to review and send.
+        </p>
+        <p class="note">Your details stay on your device — nothing is stored by this website.</p>
+      </div>
+      <EnquiryForm context="general" />
+    </div>
+  </section>
+
+  <section class="container section">
+    <p class="eyebrow reveal">Questions</p>
+    <h2 class="reveal">Common questions</h2>
+    <FAQList items={faqs} />
+  </section>
+</SiteLayout>

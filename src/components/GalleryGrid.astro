@@ -1,0 +1,95 @@
+---
+import { Image } from "astro:assets";
+import { galleryCategories, site } from "../data/site";
+import type { GalleryItem } from "../data/gallery";
+
+interface Props {
+  items: GalleryItem[];
+}
+
+const { items } = Astro.props;
+
+const usedCategories = new Set(items.map((item) => item.category));
+const filters = galleryCategories.filter(
+  (category) => category.id === "all" || usedCategories.has(category.id as never),
+);
+---
+
+{
+  items.length === 0 ? (
+    <div class="empty-state reveal">
+      <p style="margin-top:0">No photos have been cleared for publication yet.</p>
+      <p style="margin-bottom:0">
+        You can still see our latest work on{" "}
+        <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer">
+          {site.instagramHandle}
+        </a>
+        .
+      </p>
+    </div>
+  ) : (
+    <>
+      <div class="filter-bar reveal" role="group" aria-label="Filter gallery by category">
+        {filters.map((filter, index) => (
+          <button
+            type="button"
+            data-filter={filter.id}
+            aria-pressed={index === 0 ? "true" : "false"}
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
+
+      <div class="gallery-grid" data-gallery>
+        {items.map((item) => (
+          <button
+            type="button"
+            class="gallery-item reveal"
+            data-category={item.category}
+            data-full={item.src.src}
+            data-alt={item.alt}
+            data-caption={item.caption ?? ""}
+          >
+            <span class="media">
+              <Image
+                src={item.src}
+                alt={item.alt}
+                widths={[320, 640]}
+                sizes="(min-width: 62rem) 22vw, 45vw"
+                loading="lazy"
+                decoding="async"
+              />
+            </span>
+            {item.caption && <span class="gallery-caption">{item.caption}</span>}
+          </button>
+        ))}
+      </div>
+
+      <p class="empty-state" data-gallery-empty hidden>
+        Nothing in this category yet.
+      </p>
+    </>
+  )
+}
+
+<div
+  class="lightbox"
+  data-lightbox
+  data-open="false"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Image viewer"
+>
+  <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close image viewer">
+    &times;
+  </button>
+  <div class="lightbox-inner">
+    <img src="" alt="" data-lightbox-img />
+    <p class="lightbox-caption" data-lightbox-caption></p>
+  </div>
+</div>
+
+<script>
+  import "../scripts/gallery";
+</script>

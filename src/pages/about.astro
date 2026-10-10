@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import WhatsAppLink from "../components/WhatsAppLink.astro";
+import { site } from "../data/site";
+import frontageImage from "../assets/images/salon/salon-frontage.webp";
+---
+
+<SiteLayout
+  title={`About | ${site.brandName}, Vadavalli, Coimbatore`}
+  description="Kalai's Beauty Salon & Spa in Vadavalli, Coimbatore — bridal makeup, salon services and beautician training."
+  canonicalPath="/about/"
+>
+  <PageHero
+    eyebrow="About"
+    title={site.brandName}
+    intro="A salon and makeup studio in Vadavalli, Coimbatore, focused on bridal work, everyday salon services and training the next generation of beauticians."
+  />
+
+  <section class="container section">
+    <div class="split">
+      <div class="reveal">
+        <p class="eyebrow">What we do</p>
+        <h2>Bridal work first, everything else too</h2>
+        <p class="muted">
+          Most of our work is bridal makeup and styling, supported by hair, skin care and ear
+          piercing for regular clients. We also run a short beautician course for anyone starting
+          out in the trade.
+        </p>
+        <p class="muted">
+          We keep this site deliberately factual. Anything we have not confirmed — prices, timings,
+          offers — is something we would rather tell you directly on WhatsApp than publish and
+          regret later.
+        </p>
+        <div class="btn-row">
+          <WhatsAppLink label="Talk to us" />
+          <a class="btn btn-ghost" href="/contact/">Contact details</a>
+        </div>
+      </div>
+      <div class="media media-wide reveal">
+        <Image
+          src={frontageImage}
+          alt="Salon frontage with the signboard visible"
+          widths={[400, 640]}
+          sizes="(min-width: 62rem) 45vw, 90vw"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+</SiteLayout>

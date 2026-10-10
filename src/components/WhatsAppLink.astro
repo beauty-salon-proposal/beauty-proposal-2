@@ -1,0 +1,24 @@
+---
+import type { EnquiryIntent } from "../lib/whatsapp";
+import { intentMessage, waLink } from "../lib/whatsapp";
+
+interface Props {
+  intent?: EnquiryIntent;
+  label?: string;
+  variant?: "solid" | "ghost";
+  class?: string;
+}
+
+const {
+  intent = "general",
+  label = "Ask on WhatsApp",
+  variant = "solid",
+  class: className = "",
+} = Astro.props;
+
+const classes = variant === "ghost" ? `btn btn-ghost ${className}` : `btn ${className}`;
+---
+
+<a class={classes} href={waLink(intentMessage(intent))} target="_blank" rel="noopener noreferrer">
+  {label}
+</a>

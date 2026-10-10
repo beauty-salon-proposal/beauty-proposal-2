@@ -1,0 +1,33 @@
+---
+import type { FaqItem } from "../data/faqs";
+import { canRender } from "../lib/approval";
+
+interface Props {
+  items: FaqItem[];
+}
+
+const visible = Astro.props.items.filter((item) => canRender(item.approval));
+
+/** FAQ schema mirrors exactly the questions shown on the page (BR-008). */
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: visible.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
+  })),
+};
+---
+
+<div class="faq reveal">
+  {
+    visible.map((item) => (
+      <details>
+        <summary>{item.question}</summary>
+        <p>{item.answer}</p>
+      </details>
+    ))
+  }
+</div>
+{visible.length > 0 && <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}

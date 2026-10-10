@@ -1,0 +1,35 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import WhatsAppLink from "../components/WhatsAppLink.astro";
+import { navigation, site } from "../data/site";
+---
+
+<SiteLayout
+  title={`Page not found | ${site.brandName}`}
+  description="This page does not exist. Head back to Kalai's Beauty Salon & Spa."
+  canonicalPath="/404/"
+>
+  <section class="container section">
+    <p class="eyebrow">404</p>
+    <h1>That page has moved or never existed</h1>
+    <p class="lede">
+      Sorry about that. Try one of the links below, or message us and we will help.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/">Back to home</a>
+      <a class="btn btn-ghost" href="/services/">Our services</a>
+      <WhatsAppLink label="Ask on WhatsApp" />
+    </div>
+    <nav aria-label="Site pages" style="margin-top:2.5rem">
+      <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:1rem;padding:0;margin:0">
+        {
+          navigation.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </section>
+</SiteLayout>
