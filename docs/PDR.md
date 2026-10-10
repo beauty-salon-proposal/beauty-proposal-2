@@ -28,7 +28,7 @@ The brand should feel elegant, contemporary, feminine without being cliché, and
 |---|---|---|
 | Public-facing name | Kalai's Beauty Salon & Spa | Seen in supplied Instagram-derived material; confirm spelling/apostrophe with owner. |
 | Instagram | `@kalai_makeupartistry` | Seen in source discussion; verify live handle before launch. |
-| Location | Vadavalli, Coimbatore, Tamil Nadu | Seen in supplied poster/material; exact street address and pin are not supplied. |
+| Location | Vadavalli, Coimbatore, Tamil Nadu | Seen in supplied poster/material; exact address confirmed 2026-10-10 from the owner-supplied Google Maps listing: Seendur Complex, Linganur Road, Linganoor, Vadavalli, Coimbatore – 641041. |
 | Phone | `9842023382` | Visible in supplied material; verify owner still uses it. |
 | WhatsApp URL number | `919842023382` | Proposed international-format construction from the listed number; test before release. |
 | Core service areas | Bridal makeup, hair styling/cuts, facials/skin care, ear piercing | Supported by supplied discussion and images. Confirm current availability. |
@@ -206,7 +206,7 @@ Release 1 is accepted only when all P0/P1 rows below are satisfied or formally w
 | A-002 | Assumption | WhatsApp number in poster remains active. | Verify with owner before any preview is sent outside the team. |
 | A-003 | Open | Whether Tamil must be in release 1. | Recommend English release 1; add Tamil only after full translation review. |
 | A-004 | Open | Final palette and exact branding. | Present lavender-led + sage option for approval. |
-| A-005 | Open | Exact map location and hours. | Do not invent; request Google Maps share URL and hours. |
+| A-005 | Resolved | Exact map location and hours. | Resolved 2026-10-10 from the owner-supplied Google Maps listing: Seendur Complex, Linganur Road, Linganoor, Vadavalli, Coimbatore – 641041; open daily 10 AM–8 PM; map link and coordinates wired into `site.ts`. |
 | A-006 | Open | Service names and current availability. | Ask the owner to verify every service. |
 | A-007 | Open | Course price, schedule, capacity and terms. | Keep unconfirmed values as enquiry-only. |
 | A-008 | Open | Membership benefits/price/eligibility. | Show minimal teaser only until confirmed. |

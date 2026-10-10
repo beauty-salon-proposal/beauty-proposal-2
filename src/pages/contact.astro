@@ -13,7 +13,7 @@ import frontageImage from "../assets/images/salon/salon-frontage.webp";
 
 <SiteLayout
   title={`Contact | ${site.brandName}, Vadavalli, Coimbatore`}
-  description="Call, WhatsApp or message Kalai's Beauty Salon & Spa in Vadavalli, Coimbatore, and ask for directions."
+  description="Phone, WhatsApp, Instagram and Google Maps directions for Kalai's Beauty Salon & Spa in Vadavalli, Coimbatore. Open daily, 10 AM to 8 PM."
   canonicalPath="/contact/"
 >
   <PageHero
@@ -72,11 +72,17 @@ import frontageImage from "../assets/images/salon/salon-frontage.webp";
       <div class="reveal">
         <p class="eyebrow">Find us</p>
         <h2>{site.locationLabel}</h2>
-        <p class="muted">
-          We have not published a street address or map pin yet. Message us on WhatsApp and we will
-          send you the exact location and directions.
-        </p>
-        <WhatsAppLink label="Ask for directions" />
+        <address class="muted" style="font-style:normal;line-height:1.6">
+          {site.streetAddress},<br />
+          {site.locationLabel} &ndash; {site.postalCode}
+        </address>
+        <p class="muted">{site.openingHoursText}</p>
+        <div class="btn-row">
+          <a class="btn" href={site.mapDirectionsUrl} target="_blank" rel="noopener noreferrer">
+            Get directions
+          </a>
+          <WhatsAppLink label="Ask on WhatsApp" variant="ghost" />
+        </div>
       </div>
     </div>
   </section>

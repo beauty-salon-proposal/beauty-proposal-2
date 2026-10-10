@@ -1,9 +1,10 @@
 import type { ApprovalState } from "../lib/approval";
 
 /**
- * FAQ copy uses only facts present in the supplied material. Anything the
- * owner has never confirmed (prices, hours, address, policies) answers with
- * an invitation to ask instead of an invented policy (FR-015, NFR-012).
+ * FAQ copy uses only owner-supplied facts. The address and opening hours come
+ * from the confirmed Google Maps listing (STATUS.md DEC-003 / DEC-004); prices
+ * and other unconfirmed details still answer with an invitation to ask rather
+ * than an invented policy (FR-015, NFR-012).
  */
 export interface FaqItem {
   id: string;
@@ -17,7 +18,7 @@ export const faqs: FaqItem[] = [
     id: "location",
     question: "Where is the salon?",
     answer:
-      "We are in Vadavalli, Coimbatore, Tamil Nadu. Message us on WhatsApp and we will share directions.",
+      "We are at Seendur Complex, Linganur Road, Linganoor, Vadavalli, Coimbatore – 641041, and open daily from 10 AM to 8 PM. Use the “Get directions” link on the contact page for the map.",
     approval: "needs-owner-approval",
   },
   {
@@ -45,7 +46,7 @@ export const faqs: FaqItem[] = [
     id: "prices",
     question: "What are your prices and timings?",
     answer:
-      "Prices and timings change, so we share them directly on WhatsApp rather than publishing them here. Ask us and we will send the current details.",
+      "We are open daily from 10 AM to 8 PM. Prices vary by service, so we share the current rates on WhatsApp rather than publishing them here.",
     approval: "needs-owner-approval",
   },
 ];

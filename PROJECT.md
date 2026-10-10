@@ -15,7 +15,7 @@
 
 - Business name seen in the Instagram materials: **Kalai's Beauty Salon & Spa**.
 - Instagram handle: `@kalai_makeupartistry`.
-- Location shown in supplied materials: **Vadavalli, Coimbatore, Tamil Nadu, India**.
+- Location shown in supplied materials: **Vadavalli, Coimbatore, Tamil Nadu, India**. Exact address confirmed from the owner-supplied Google Maps listing (2026-10-10): **Seendur Complex, Linganur Road, Linganoor, Vadavalli, Coimbatore – 641041**; open daily **10 AM–8 PM**.
 - Business phone on supplied promotional material: `9842023382`; proposed WhatsApp international format: `+919842023382`. Verify this with the owner before go-live.
 - Light-only visual style. Recommended default: lavender and soft-white surfaces, deep violet actions, sage-green accents; no automatic dark mode.
 - Main site is for marketing and enquiries, not online commerce. Bridal makeup leads the presentation; everyday salon services and the beautician course also receive clear entry points.
@@ -54,7 +54,7 @@ Links mentioned in the source discussion: Instagram profile `https://www.instagr
 - Confirm the brand name and the correct public phone/WhatsApp number.
 - Confirm the final colour palette (lavender-led is the recommendation) and whether Tamil language support is required in release 1.
 - Obtain client approval for every photo, especially identifiable clients and children, and replace suitable low-resolution imagery with originals when available.
-- Confirm exact address or map pin, opening hours, current service list, course fee/batch schedule, membership benefits, and any prices to show.
+- Confirm exact address or map pin, opening hours, current service list, course fee/batch schedule, membership benefits, and any prices to show. *(Address, map pin and opening hours confirmed 2026-10-10 from the owner-supplied Google Maps listing; service list, course fee/batch, membership and prices still open.)*
 - Confirm hosting account, domain ownership, and who will maintain copy and images.
 
 ## Using the assets in a coding conversation

@@ -10,7 +10,11 @@ const year = new Date().getFullYear();
     <div class="footer-grid">
       <div>
         <h3>{site.brandName}</h3>
-        <p class="muted">{site.locationLabel}</p>
+        <address class="muted" style="font-style:normal;line-height:1.6">
+          {site.streetAddress},<br />
+          {site.locationLabel} &ndash; {site.postalCode}
+        </address>
+        <p class="muted">{site.openingHoursText}</p>
         <p class="muted">Bridal makeup, salon services and a 10-day beautician course.</p>
       </div>
       <div>
@@ -32,6 +36,11 @@ const year = new Date().getFullYear();
           <li>
             <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer">
               {site.instagramHandle}
+            </a>
+          </li>
+          <li>
+            <a href={site.mapDirectionsUrl} target="_blank" rel="noopener noreferrer">
+              Get directions
             </a>
           </li>
           <li><a href="/contact/">All contact options</a></li>

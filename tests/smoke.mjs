@@ -131,6 +131,11 @@ try {
               return ["INVALID"];
             }
           }),
+          jsonLdRaw: Array.from(
+            document.querySelectorAll('script[type="application/ld+json"]'),
+          )
+            .map((node) => node.textContent ?? "")
+            .join("\n"),
         },
       }));
 
@@ -202,9 +207,19 @@ try {
     seoPages.every((page) => page.jsonLdTypes.flat().includes("BeautySalon")),
   );
   check(
-    "seo: no fake rating/hours/address in structured data",
-    !JSON.stringify(seoPages.map((page) => page.jsonLdTypes)).match(
-      /aggregateRating|openingHours|geo|priceRange/i,
+    "seo: structured data carries the verified address, hours and map",
+    seoPages.every(
+      (page) =>
+        page.jsonLdRaw.includes("Seendur Complex") &&
+        page.jsonLdRaw.includes("641041") &&
+        page.jsonLdRaw.includes("openingHoursSpecification") &&
+        page.jsonLdRaw.includes("GeoCoordinates"),
+    ),
+  );
+  check(
+    "seo: no fabricated rating or price in structured data",
+    !JSON.stringify(seoPages.map((page) => page.jsonLdRaw)).match(
+      /aggregateRating|reviewCount|priceRange/i,
     ),
   );
   for (const route of ["/services/", "/bridal/", "/contact/"]) {
@@ -214,6 +229,11 @@ try {
       Boolean(page) && page.jsonLdTypes.flat().includes("FAQPage"),
     );
   }
+  const contactPage = seoPages.find((entry) => entry.route === "/contact/");
+  check(
+    "seo: contact page publishes Google Maps directions",
+    Boolean(contactPage) && /google\.com\/maps/.test(contactPage.jsonLdRaw),
+  );
 
   /* Gallery interaction ------------------------------------------------- */
   const context = await browser.newContext({ viewport: { width: 375, height: 812 } });

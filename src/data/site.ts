@@ -1,10 +1,13 @@
 /**
  * Central site configuration (FR-024, FR-001, FR-013).
  *
- * Every value below is traced to the supplied source material. None of it has
- * been re-confirmed by the owner yet — see docs/STATUS.md DEC-001..DEC-010.
- * Optional facts the owner has never supplied (street address, opening hours,
- * map pin, prices) are deliberately absent rather than filled with guesses.
+ * Contact facts (phone, Instagram, area) come from the supplied source
+ * material. The street address, opening hours, Google Maps link and
+ * coordinates were confirmed from the owner-supplied Google Maps listing
+ * (/"Kalai's beauty & academy", place id 0x3ba85fc48dd71297:0xf7de926d8c7698c1)
+ * on 2026-10-10 — see docs/STATUS.md DEC-003 / DEC-004 (resolved).
+ * Still unconfirmed facts (prices, course fees, membership benefits) remain
+ * absent rather than guessed.
  */
 export const site = {
   brandName: "Kalai's Beauty Salon & Spa",
@@ -16,11 +19,21 @@ export const site = {
   /** wa.me digits, country code first, digits only (BR-009). */
   whatsappDigits: "919842023382",
   locationLabel: "Vadavalli, Coimbatore, Tamil Nadu",
-  /** No exact street address or Google Maps pin has been supplied (DEC-003). */
-  streetAddress: undefined as string | undefined,
-  mapDirectionsUrl: undefined as string | undefined,
-  /** No opening hours have been supplied (DEC-004). */
-  openingHoursText: undefined as string | undefined,
+  /** Confirmed from the owner-supplied Google Maps listing (DEC-003). */
+  streetAddress: "Seendur Complex, Linganur Road, Linganoor, Vadavalli",
+  addressLocality: "Vadavalli, Coimbatore",
+  addressRegion: "Tamil Nadu",
+  postalCode: "641041",
+  addressCountry: "IN",
+  /** Owner-supplied Google Maps share link, resolved 2026-10-10. */
+  mapDirectionsUrl:
+    "https://www.google.com/maps/place/Kalai's+beauty+%26academy+Coimbatore+vadavalli/@11.0228381,76.9082814,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba85fc48dd71297:0xf7de926d8c7698c1!8m2!3d11.0228381!4d76.9082814!16s%2Fg%2F11zymfzq28",
+  latitude: 11.0228381,
+  longitude: 76.9082814,
+  /** Open every day, from the Google Maps listing (DEC-004). */
+  openingHoursText: "Open daily, 10 AM to 8 PM",
+  openingHoursOpens: "10:00",
+  openingHoursCloses: "20:00",
   defaultLanguage: "en",
   languagesEnabled: ["en"] as const,
   /** Set SITE_URL at build time; canonical/sitemap are omitted without it. */

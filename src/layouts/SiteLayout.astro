@@ -22,9 +22,10 @@ const canonical = baseUrl ? new URL(canonicalPath, baseUrl).href : undefined;
 const shareImage = baseUrl ? new URL(heroImage.src, baseUrl).href : undefined;
 
 /**
- * Structured data uses only owner-supplied facts (FR-017, BR-008): no ratings,
- * hours, street address or coordinates — none of those are verified. Anything
- * still unconfirmed is omitted rather than guessed.
+ * Structured data uses only owner-supplied facts (FR-017, BR-008). The
+ * address, opening hours, coordinates and map link were confirmed from the
+ * owner-supplied Google Maps listing (STATUS.md DEC-003 / DEC-004). Ratings,
+ * prices and other unconfirmed facts are omitted rather than guessed.
  */
 const businessJsonLd = {
   "@context": "https://schema.org",
@@ -33,9 +34,31 @@ const businessJsonLd = {
   telephone: site.phoneE164,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Vadavalli, Coimbatore",
-    addressRegion: "Tamil Nadu",
-    addressCountry: "IN",
+    streetAddress: site.streetAddress,
+    addressLocality: site.addressLocality,
+    addressRegion: site.addressRegion,
+    postalCode: site.postalCode,
+    addressCountry: site.addressCountry,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.latitude,
+    longitude: site.longitude,
+  },
+  hasMap: site.mapDirectionsUrl,
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
+    opens: site.openingHoursOpens,
+    closes: site.openingHoursCloses,
   },
   sameAs: [site.instagramUrl],
   ...(canonical ? { url: canonical } : {}),
