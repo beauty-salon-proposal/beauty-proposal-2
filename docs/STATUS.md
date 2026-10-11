@@ -45,7 +45,7 @@ Allowed statuses: `Not started`, `In progress`, `Blocked`, `Ready for review`, `
 | MS-03 | Core content and enquiries | In progress | Preview routes carry source-supported copy with no invented facts; central config + WhatsApp builder tested. Blocked from launch: no owner content sign-off (T-001, BL-001/BL-004/BL-005). |
 | MS-04 | Approved images and gallery | In progress | Allow-list, optimisation, filters, keyboard lightbox and held-poster boundary implemented and tested. Blocked: all 10 images still `needs-owner-approval` (BL-002); facial/course/certificate images excluded from output by design. |
 | MS-05 | SEO, accessibility, motion and hardening | In progress | Per-route titles/descriptions, BeautySalon JSON-LD with the verified address/hours/geo/map and no fabricated rating/price, noindex preview, GSAP reduced-motion-safe reveals, 120+ smoke checks. Blocked: canonical/sitemap need SITE_URL (DEC-010); Lighthouse run still to do. |
-| MS-06 | Owner review, launch and handover | Not started | Written approval, production smoke test and owner handover. |
+| MS-06 | Owner review, launch and handover | In progress | Owner reviewed and approved copy + 6 images 2026-10-10; Vercel auto-production wired (VERCEL_ENV + domain fallback); production verification + push pending. |
 | MS-07 | Optional expansions | Deferred | Only start if separately approved. |
 
 ## 4. Open decision register
@@ -60,7 +60,7 @@ Allowed statuses: `Not started`, `In progress`, `Blocked`, `Ready for review`, `
 | DEC-006 | Premium Membership Card benefits and terms | Teaser only, or hide if offer is inactive | Salon owner | Open |
 | DEC-007 | Final colour | Lavender-led light background + sage accents | Salon owner / team | Proposed, not approved |
 | DEC-008 | Tamil support in first release | English-only until full translation review | Salon owner / team | Open |
-| DEC-009 | Are all Instagram pictures licensed/consented for public site use? | Treat every file as not approved until recorded | Salon owner / relevant clients/guardians | Open |
+| DEC-009 | Are all Instagram pictures licensed/consented for public site use? | Treat every file as not approved until recorded | Salon owner / relevant clients/guardians | Resolved — owner reviewed the preview and approved the 6 published images for launch 2026-10-10; course/facial/certificate posters remain excluded |
 | DEC-010 | Hosting, repo and custom domain | Owner-controlled Git repository + Netlify as default | Client/team | Open |
 | DEC-011 | GSAP interpretation | Include subtle scroll reveals as optional enhancement, remove search/theme picker | Team/owner | Proposed interpretation |
 | DEC-012 | Reviews/testimonials and credential copy | No public placeholders; only verified owner-approved text | Salon owner | Open |
@@ -85,7 +85,7 @@ Allowed statuses: `Not started`, `In progress`, `Blocked`, `Ready for review`, `
 | Blocker ID | Dependency | Blocks | Action |
 |---|---|---|---|
 | BL-001 | Owner confirms public phone/WhatsApp | T-002, T-010, T-016, production contact CTA | Ask owner and test a message on a phone. |
-| BL-002 | Photo suitability and permissions | T-003, T-018–T-021, public launch | Review contact sheet and obtain permission; exclude unclear items. |
+| BL-002 | Photo suitability and permissions | T-003, T-018–T-021, public launch | Resolved 2026-10-10: owner approved the 6 published images; course/facial/certificate images stay out of output by design. |
 | BL-003 | Approved name/palette/language | T-004, T-007–T-009, copy review | Record one decision, leave alternatives out of production. |
 | BL-004 | Exact address/map pin/hours | T-015 and local SEO fields | Resolved 2026-10-10: address, map link and daily 10 AM–8 PM hours confirmed from the owner-supplied Google Maps listing and wired into `site.ts`, contact/footer copy and JSON-LD. |
 | BL-005 | Course and membership status/terms | T-013–T-014, copy approval | Verify whether offers are current and what is safe to publish. |
@@ -108,6 +108,7 @@ Allowed statuses: `Not started`, `In progress`, `Blocked`, `Ready for review`, `
 | 2026-10-10 | Lighthouse baseline (T-028, partial) on local preview: performance home 84 / gallery 85 / services 87; accessibility 100 / 100 / 100 after fixing services `heading-order` (added screen-reader-only `h2` above the service grid); best-practices 100; SEO 66 on all pages solely because `is-crawlable` fails by design (noindex/`Disallow: /`). LCP 3.1–3.4 s on the preview, to revisit before launch. `npm run check` 0 errors, `npm run test:smoke` 120/120. Still open: lighthouse on the production build, `SITE_URL`, owner approvals (BL-001–BL-006). | Builder |
 | 2026-10-10 | Motion/SEO polish pass on the preview: Lenis smooth scroll wired to GSAP ScrollTrigger with anchor support, paused while the lightbox is open and fully disabled under `prefers-reduced-motion` (T-022); visual polish (hero halo + location tag, card/gallery hover, eyebrow rule, selection colour, button shadow); SEO hardening (T-023: BeautySalon + FAQPage JSON-LD with verified fields only, Twitter card, og:locale, Apple touch icon, all descriptions 50–160 chars, unique titles). Evidence: `npm run build` exit 0, `npm run check` 0 errors, `npm run test:smoke` 120/120 (incl. 10 new SEO assertions proving no canonical/sitemap/placeholder-domain leaks and no fake rating/hours/address in structured data). Still preview-only: owner approvals (BL-001–BL-006), SITE_URL and deployment outstanding. | Builder |
 | 2026-10-10 | Location pass: owner supplied the Google Maps listing, resolving DEC-003 and the hours half of DEC-004. Added street address, pincode 641041, area label, daily 10 AM–8 PM hours, coordinates and the map link to `src/data/site.ts`; enriched the contact page and footer with the full address, hours and a "Get directions" link; updated the location/timings FAQs; extended BeautySalon JSON-LD with `streetAddress`, `postalCode`, `geo`, `hasMap` and `openingHoursSpecification`; updated the smoke SEO assertion to require the verified address and reject fabricated rating/price. Also removed two stray duplicate copies of the contact-sheet JPEG from the repository root. Evidence: `npm run build`, `npm run check`, `npm run test:smoke`. | Builder |
+| 2026-10-10 | Production pass: owner reviewed the full preview and approved all copy, services, course topics, FAQs and the 6 published images for launch (DEC-009, BL-002 resolved). Flipped gallery/faq/service/course records to `approved`; build auto-detects Vercel production (`VERCEL_ENV=production`, falling back to `BUILD_MODE=production`, with domain from `SITE_URL` → `VERCEL_PROJECT_PRODUCTION_URL` → `VERCEL_URL` for canonical/sitemap/robots); `robots.txt` now reads the shared `site.publicBaseUrl`. Evidence: `npm run check`, preview `npm run build` + `npm run test:smoke`, plus a local `BUILD_MODE=production` build proving the gallery/FAQs render and noindex is gone. | Builder |
 
 ## 9. Status update template
 

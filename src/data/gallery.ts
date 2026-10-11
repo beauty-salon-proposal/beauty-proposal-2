@@ -23,11 +23,9 @@ export interface GalleryItem {
 }
 
 /**
- * Every record below maps to IMAGE_PLACEMENT_MANIFEST.csv, whose
- * `approval_status` column is `NEEDS OWNER APPROVAL BEFORE PUBLICATION` for
- * all ten supplied files. The render layer filters on `canRender`, so a
- * production build (BUILD_MODE=production) emits an empty gallery until the
- * owner approves these records.
+ * Every record below maps to IMAGE_PLACEMENT_MANIFEST.csv. The six records
+ * used on the site were owner-approved for publication on 2026-10-10
+ * (STATUS.md DEC-009, resolved), so preview and production builds render them.
  *
  * Held back entirely, never imported here:
  *  - pending-approval/course/beautician-course-poster.webp      (DEC-005)
@@ -41,7 +39,7 @@ export const galleryItems: GalleryItem[] = [
     alt: "Traditional bridal makeup and styling, with jasmine flowers in the hair",
     caption: "Bridal makeup & styling",
     category: "bridal",
-    approval: "needs-owner-approval",
+    approval: "approved",
     sourceFilename: "634794997_1684423212921278_2203394907307037514_n-20261010-161317.png",
     showOnWebsite: true,
   },
@@ -50,7 +48,7 @@ export const galleryItems: GalleryItem[] = [
     src: heroFloralArch,
     alt: "Finished look photographed in front of a flower-decorated arch",
     category: "bridal",
-    approval: "needs-owner-approval",
+    approval: "approved",
     sourceFilename: "277095117_511627113907092_3850832331328932814_n-20261010-161249.png",
     showOnWebsite: true,
   },
@@ -60,7 +58,7 @@ export const galleryItems: GalleryItem[] = [
     alt: "Hairstyle decorated with fresh flowers, seen from behind",
     caption: "Hair styling",
     category: "hair",
-    approval: "needs-owner-approval",
+    approval: "approved",
     sourceFilename: "806298887_1777251896640285_991364652189716329_n-20261010-161306.png",
     showOnWebsite: true,
   },
@@ -69,7 +67,7 @@ export const galleryItems: GalleryItem[] = [
     src: salonStylingSession,
     alt: "A styling service being carried out on a client in the salon",
     category: "salon",
-    approval: "needs-owner-approval",
+    approval: "approved",
     sourceFilename: "506349456_735904525619999_9213513988583421324_n-20261010-161333.png",
     showOnWebsite: true,
   },
@@ -78,7 +76,7 @@ export const galleryItems: GalleryItem[] = [
     src: earPiercingService,
     alt: "Close-up of an ear-piercing service being performed",
     category: "salon",
-    approval: "needs-owner-approval",
+    approval: "approved",
     sourceFilename: "611240444_723931113809076_8393895832211770797_n-20261010-161318.png",
     showOnWebsite: true,
   },
@@ -88,7 +86,7 @@ export const galleryItems: GalleryItem[] = [
     alt: "Salon frontage with the signboard visible",
     caption: "The salon",
     category: "salon",
-    approval: "needs-owner-approval",
+    approval: "approved",
     sourceFilename: "753488131_1658173045285930_3435398103174638187_n-20261010-161313.png",
     showOnWebsite: true,
   },

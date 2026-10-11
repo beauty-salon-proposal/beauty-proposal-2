@@ -2,8 +2,8 @@ import type { ApprovalState } from "../lib/approval";
 
 /**
  * Service names come from the supplied source material (PDR.md §3, "core
- * service areas"). Availability has NOT been re-confirmed by the owner
- * (STATUS.md DEC-004), so every record is flagged and no price is stored.
+ * service areas"). The owner reviewed and confirmed the service list on
+ * 2026-10-10 (STATUS.md DEC-004/DEC-009); no price is stored (BR-004).
  */
 export interface ServiceItem {
   id: string;
@@ -27,7 +27,7 @@ export const services: ServiceItem[] = [
       "Makeup and styling for weddings and wedding functions, planned around your date, outfit and jewellery.",
     category: "bridal",
     featured: true,
-    approval: "needs-owner-approval",
+    approval: "approved",
     enquiryLabel: "Ask about a date",
   },
   {
@@ -36,7 +36,7 @@ export const services: ServiceItem[] = [
     summary: "Haircuts, styling and occasion hairstyles, including floral and traditional looks.",
     category: "hair",
     featured: true,
-    approval: "needs-owner-approval",
+    approval: "approved",
     enquiryLabel: "Ask about hair services",
   },
   {
@@ -45,7 +45,7 @@ export const services: ServiceItem[] = [
     summary: "Facial and skin-care treatments. Ask us which option suits you before booking.",
     category: "skin-care",
     featured: true,
-    approval: "needs-owner-approval",
+    approval: "approved",
     enquiryLabel: "Ask about skin care",
   },
   {
@@ -54,7 +54,7 @@ export const services: ServiceItem[] = [
     summary: "Ear-piercing service. Message us beforehand to confirm timing and availability.",
     category: "piercing",
     featured: false,
-    approval: "needs-owner-approval",
+    approval: "approved",
     enquiryLabel: "Ask about ear piercing",
   },
 ];

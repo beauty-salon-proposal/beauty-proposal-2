@@ -1,4 +1,24 @@
 /**
+ * Canonical base URL for canonical/OG tags and the sitemap. Prefers an
+ * explicit SITE_URL; falls back to the Vercel deployment domain on Vercel so
+ * production builds on Vercel need no extra configuration. Omitted in local
+ * preview builds, where canonical/sitemap must never leak (TC-010).
+ */
+function resolvePublicBaseUrl(): string | undefined {
+  const explicit = process.env.SITE_URL?.trim().replace(/\/$/, "");
+  if (explicit) return explicit;
+  const vercelHost = (
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+    process.env.VERCEL_URL ||
+    ""
+  )
+    .trim()
+    .replace(/^https?:\/\//, "")
+    .replace(/\/$/, "");
+  return vercelHost ? `https://${vercelHost}` : undefined;
+}
+
+/**
  * Central site configuration (FR-024, FR-001, FR-013).
  *
  * Contact facts (phone, Instagram, area) come from the supplied source
@@ -36,8 +56,8 @@ export const site = {
   openingHoursCloses: "20:00",
   defaultLanguage: "en",
   languagesEnabled: ["en"] as const,
-  /** Set SITE_URL at build time; canonical/sitemap are omitted without it. */
-  publicBaseUrl: process.env.SITE_URL?.trim() || undefined,
+  /** Canonical base URL for OG/canonical/sitemap — omitted in local preview. */
+  publicBaseUrl: resolvePublicBaseUrl(),
 } as const;
 
 export type SiteConfig = typeof site;
