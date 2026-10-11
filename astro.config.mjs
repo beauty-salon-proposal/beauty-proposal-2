@@ -20,6 +20,15 @@ const vercelHost = (
   .replace(/\/$/, "");
 const site = explicitSite ?? (vercelHost ? `https://${vercelHost}` : undefined);
 
+// The sitemap package's default export is the integration factory — it must
+// be called. (Passing the raw module namespace fails validation with
+// "integrations.0.name: Required" as soon as `site` resolves, e.g. on Vercel.)
+const integrations = [];
+if (site) {
+  const { default: sitemap } = await import("@astrojs/sitemap");
+  integrations.push(sitemap());
+}
+
 export default defineConfig({
   site,
   output: "static",
@@ -27,7 +36,7 @@ export default defineConfig({
   build: {
     format: "directory",
   },
-  integrations: site ? [await import("@astrojs/sitemap")] : [],
+  integrations,
   compressHTML: true,
   prefetch: { prefetchAll: true, defaultStrategy: "viewport" },
   devToolbar: { enabled: false },
