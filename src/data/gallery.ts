@@ -29,7 +29,6 @@ export interface GalleryItem {
  *
  * Held back entirely, never imported here:
  *  - pending-approval/course/beautician-course-poster.webp      (DEC-005)
- *  - pending-approval/skin-care/facial-service-poster.webp      (DEC-004)
  *  - pending-approval/about/certificate-presentation.webp       (credential + consent unverified)
  */
 export const galleryItems: GalleryItem[] = [
