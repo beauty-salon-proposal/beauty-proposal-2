@@ -18,7 +18,7 @@ export const faqs: FaqItem[] = [
     id: "location",
     question: "Where is the salon?",
     answer:
-      "We are at Seendur Complex, Linganur Road, Linganoor, Vadavalli, Coimbatore – 641041, and open daily from 10 AM to 8 PM. Use the “Get directions” link on the contact page for the map.",
+      "We are at Seendur Complex, linganur road, Linganoor, vadavalli, Coimbatore, Tamil Nadu 641041, and open daily from 10 AM to 8 PM. Use the “Get directions” link on the contact page for the map.",
     approval: "approved",
   },
   {

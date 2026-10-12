@@ -30,7 +30,7 @@ function resolvePublicBaseUrl(): string | undefined {
  * absent rather than guessed.
  */
 export const site = {
-  brandName: "Kalai's Beauty Salon & Spa",
+  brandName: "Kalai's beauty & academy",
   instagramHandle: "@kalai_makeupartistry",
   instagramUrl: "https://www.instagram.com/kalai_makeupartistry/",
   /** Printed on supplied promotional material; owner verification pending. */
@@ -38,16 +38,19 @@ export const site = {
   phoneE164: "+919842023382",
   /** wa.me digits, country code first, digits only (BR-009). */
   whatsappDigits: "919842023382",
+  /** Short area label used in the header and hero badge. */
   locationLabel: "Vadavalli, Coimbatore, Tamil Nadu",
   /** Confirmed from the owner-supplied Google Maps listing (DEC-003). */
-  streetAddress: "Seendur Complex, Linganur Road, Linganoor, Vadavalli",
-  addressLocality: "Vadavalli, Coimbatore",
+  streetAddress: "Seendur Complex, linganur road, Linganoor, vadavalli",
+  /** Single-line address exactly as supplied by the owner; used verbatim. */
+  fullAddress:
+    "Seendur Complex, linganur road, Linganoor, vadavalli, Coimbatore, Tamil Nadu 641041",
+  addressLocality: "Coimbatore",
   addressRegion: "Tamil Nadu",
   postalCode: "641041",
   addressCountry: "IN",
   /** Owner-supplied Google Maps share link, resolved 2026-10-10. */
-  mapDirectionsUrl:
-    "https://www.google.com/maps/place/Kalai's+beauty+%26academy+Coimbatore+vadavalli/@11.0228381,76.9082814,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba85fc48dd71297:0xf7de926d8c7698c1!8m2!3d11.0228381!4d76.9082814!16s%2Fg%2F11zymfzq28",
+  mapDirectionsUrl: "https://maps.app.goo.gl/rkbQDb3ueGDbUiiV7",
   latitude: 11.0228381,
   longitude: 76.9082814,
   /** Open every day, from the Google Maps listing (DEC-004). */

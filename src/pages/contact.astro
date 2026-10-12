@@ -1,4 +1,4 @@
----
+﻿---
 import { Image } from "astro:assets";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import PageHero from "../components/PageHero.astro";
@@ -13,7 +13,7 @@ import frontageImage from "../assets/images/salon/salon-frontage.webp";
 
 <SiteLayout
   title={`Contact | ${site.brandName}, Vadavalli, Coimbatore`}
-  description="Phone, WhatsApp, Instagram and Google Maps directions for Kalai's Beauty Salon & Spa in Vadavalli, Coimbatore. Open daily, 10 AM to 8 PM."
+  description="Phone, WhatsApp, Instagram and Google Maps directions for Kalai's beauty & academy in Vadavalli, Coimbatore. Open daily, 10 AM to 8 PM."
   canonicalPath="/contact/"
 >
   <PageHero
@@ -73,8 +73,7 @@ import frontageImage from "../assets/images/salon/salon-frontage.webp";
         <p class="eyebrow">Find us</p>
         <h2>{site.locationLabel}</h2>
         <address class="muted" style="font-style:normal;line-height:1.6">
-          {site.streetAddress},<br />
-          {site.locationLabel} &ndash; {site.postalCode}
+          {site.fullAddress}
         </address>
         <p class="muted">{site.openingHoursText}</p>
         <div class="btn-row">
