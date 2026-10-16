@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "cd react-web && npm install --no-audit --no-fund",
+  "buildCommand": "cd react-web && npm run build",
+  "outputDirectory": "react-web/dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

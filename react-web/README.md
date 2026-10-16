@@ -126,3 +126,41 @@ example.
 
 The original Astro site is still in the folder above this one, untouched, in
 case you ever need to compare the two.
+
+---
+
+## 5. Deploying to Vercel (from GitHub)
+
+This repository has **two** apps: the old Astro site at the repo root, and this
+React app in `react-web/`. A file called `vercel.json` at the **repo root**
+already tells Vercel to build THIS React app, so a normal GitHub → Vercel
+deploy works with no extra settings:
+
+- Install: `cd react-web && npm install`
+- Build:   `cd react-web && npm run build`
+- Output:  `react-web/dist`
+- All routes are rewritten to `index.html` so page refreshes work (single-page
+  app routing).
+
+**In your Vercel project, check these (Project → Settings → Build and
+Deployment):**
+
+1. **Root Directory** — leave it empty (the repo root). Do NOT set it to
+   `react-web`; if you do, Vercel reads `react-web/vercel.json` instead and you
+   should not need the root file.
+2. **Framework Preset** — "Other" (or leave on Auto; `vercel.json` overrides it).
+3. Turn **OFF** any "Override" toggles for Build/Install/Output — a dashboard
+   override wins over `vercel.json` and can send it back to the Astro build.
+
+**Optional:** add an Environment Variable `VITE_SITE_URL` = your live domain
+(see `.env.example`). Everything works without it; it only adds share/canonical
+links.
+
+That is the only setup needed. Every push to `main` will now deploy the latest
+React code.
+
+> Alternative: if you would rather keep both sites as separate Vercel projects,
+> create a second Vercel project for the same repo and set its **Root Directory
+> to `react-web`**. In that case delete the root `vercel.json` so it does not
+> affect the Astro project.
+
