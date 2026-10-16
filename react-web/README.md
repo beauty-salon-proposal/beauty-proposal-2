@@ -1,5 +1,9 @@
 # Kalai's beauty & academy — React website
 
+> **New here / confused by the number of files?**
+> Read **[START-HERE.md](START-HERE.md)** first — it explains every file in
+> plain English in about two minutes.
+
 This is the **React + Tailwind CSS** version of the salon website.
 It was rewritten from the original Astro site so that the code is easy to
 read, edit and learn from.
